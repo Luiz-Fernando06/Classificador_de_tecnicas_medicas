@@ -1,1 +1,125 @@
+#BIBLIOTECAS................................................................................
+import pandas as pd
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+from sklearn import svm
+
+#CLASSIFICADOR..............................................................................
+df = pd.read_csv('/content/medico_db_TotalemnteTratado.csv')
+
+X = df[['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia']]
+y = df['tecnica']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+clf = DecisionTreeClassifier(random_state=1)
+clf2 = svm.SVC()
+
+clf.fit(X_train, y_train)
+clf2.fit(X_train, y_train)
+
+#MENU.......................................................................................
+def menu():
+ print(" Digite: ")
+ print('   1 - Para Classificador com Árvore Decisão')
+ print('   2 - Para Classificador com SVM')
+ print('   3 - Para sair')
+
+#ARVORE.....................................................................................
+def menu_arvore(): 
+  print('ÁRVORE DE DECISÂO: ')
+  print('   1 - Mostrar desempenho')
+  print('   2 - Mostrar desenho da árvore')
+  print('   3 - Fazer nova classificação')
+  print('   4 - Voltar ao menu')
+  
+def desenpenho_arvore():
+ y_pred = clf.predict(X_test)
+ acuracia = accuracy_score(y_test, y_pred)
+ print("Desempenho:", acuracia)
+
+def deesenho_arvore():
+ data_colunas_uteis = ['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia']
+ data_class_names = ['0','1']
+ tree.plot_tree(clf, feature_names = data_colunas_uteis,class_names= data_class_names, filled = True)
+ plt.show()
+
+def nova_classificacao():
+ entrada_dicionario = {'IdMedico': int(input('Id Medico(1 até 721): ')),
+            'tip_urgencia': float(input('Tipo de Urgencia(0: não urgente ou 1: urgente): ')),
+            'tipo_cirurgia': int(input('Tipo de Cirugia (0: cirurgia de alta complexidade, 1: Cirurgia complexa, 2: Cirurgia Média, 3: Procedimento simples, 4: Procedimento estético, 5: Procedimento emergencial): ')),
+            'tip_acomod': int(input('Tipo de acomodação(1: Acomodação Comum ou 2: Acomodação de Emergencia): ')),
+            }
+ entrada = pd.DataFrame([entrada_dicionario],  columns=['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia'])
+ pred = clf.predict(entrada)
+ if pred == 1:
+  print('Técnica usada: VIDEOLAPAROSCOPIA')
+ else:
+  print('Técnica usada: PADRÃO (cirurgia aberta)')
+
+#SVM........................................................................................  
+def menu_svm(): 
+  print('SVM: ')
+  print('   1 - Mostrar desempenho')
+  print('   2 - Fazer nova classificação')
+  print('   3 - Voltar ao menu')
+
+def desenpenho_svm():
+ y_pred = clf2.predict(X_test)
+ acuracia = accuracy_score(y_test, y_pred)
+ print("Desempenho:", acuracia)
+
+def nova_classificacao_svm():
+ entrada_dicionario = {'IdMedico': int(input('Id Medico(1 até 721): ')),
+            'tip_urgencia': float(input('Tipo de Urgencia(0: não urgente ou 1: urgente): ')),
+            'tipo_cirurgia': int(input('Tipo de Cirugia (0: cirurgia de alta complexidade, 1: Cirurgia complexa, 2: Cirurgia Média, 3: Procedimento simples, 4: Procedimento estético, 5: Procedimento emergencial): ')),
+            'tip_acomod': int(input('Tipo de acomodação(1: Acomodação Comum ou 2: Acomodação de Emergencia): ')),
+            }
+ entrada = pd.DataFrame([entrada_dicionario],  columns=['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia'])
+ pred = clf2.predict(entrada)
+ if pred == 1:
+  print('Técnica usada: VIDEOLAPAROSCOPIA')
+ else:
+  print('Técnica usada: PADRÃO (cirurgia aberta)')  
+
+#ESCOLHAS...................................................................................
+while True:
+  print('Classificador de técnicas medicas') 
+  menu() 
+  escolha = int(input('Escolha uma opção: ')) 
+  if escolha == 1:
+    while True:
+     menu_arvore()
+     escolha = int(input('Escolha uma opção: '))
+     if escolha == 1:
+      desenpenho_arvore()
+     elif escolha == 2:
+      deesenho_arvore()
+     elif escolha == 3:
+      nova_classificacao()
+     elif escolha == 4:
+      break
+     else:
+      print('Opção inválida')
+  if escolha == 2:
+    while True:
+      menu_svm()
+      escolha_svm = int(input('Escolha uma opção: '))
+      if escolha_svm == 1:
+        desenpenho_svm()
+      elif escolha_svm == 2:
+        nova_classificacao_svm()
+      elif escolha_svm == 3:
+        break
+      else:
+        print('Opção inválida')
+  if escolha == 3:
+    print('Saindo...')
+    break
+  else:
+    print('Opção inválida')
+   
+
 
