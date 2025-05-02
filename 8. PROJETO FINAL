@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn import svm
 
 #CLASSIFICADOR..............................................................................
-df = pd.read_csv('/content/medico_db_TotalemnteTratado.csv')
+df = pd.read_csv('medico_db_TotalemnteTratado.csv')
 
 X = df[['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia']]
 y = df['tecnica']
@@ -35,12 +35,12 @@ def menu_arvore():
   print('   3 - Fazer nova classificação')
   print('   4 - Voltar ao menu')
   
-def desenpenho_arvore():
+def desempenho_arvore():
  y_pred = clf.predict(X_test)
  acuracia = accuracy_score(y_test, y_pred)
  print("Desempenho:", acuracia)
 
-def deesenho_arvore():
+def desenho_arvore():
  data_colunas_uteis = ['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia']
  data_class_names = ['0','1']
  tree.plot_tree(clf, feature_names = data_colunas_uteis,class_names= data_class_names, filled = True)
@@ -66,7 +66,7 @@ def menu_svm():
   print('   2 - Fazer nova classificação')
   print('   3 - Voltar ao menu')
 
-def desenpenho_svm():
+def desempenho_svm():
  y_pred = clf2.predict(X_test)
  acuracia = accuracy_score(y_test, y_pred)
  print("Desempenho:", acuracia)
@@ -80,9 +80,9 @@ def nova_classificacao_svm():
  entrada = pd.DataFrame([entrada_dicionario],  columns=['IdMedico', 'tip_urgencia', 'tip_acomod', 'tipo_cirurgia'])
  pred = clf2.predict(entrada)
  if pred == 1:
-  print('Técnica usada: VIDEOLAPAROSCOPIA')
+  print('Técnica usada: PADRÃO (cirurgia aberta)')
  else:
-  print('Técnica usada: PADRÃO (cirurgia aberta)')  
+  print('Técnica usada: VIDEOLAPAROSCOPIA')  
 
 #ESCOLHAS...................................................................................
 while True:
@@ -94,32 +94,31 @@ while True:
      menu_arvore()
      escolha = int(input('Escolha uma opção: '))
      if escolha == 1:
-      desenpenho_arvore()
+      desempenho_arvore()
      elif escolha == 2:
-      deesenho_arvore()
+      desenho_arvore()
      elif escolha == 3:
       nova_classificacao()
      elif escolha == 4:
       break
      else:
       print('Opção inválida')
-  if escolha == 2:
+  elif escolha == 2:
     while True:
       menu_svm()
       escolha_svm = int(input('Escolha uma opção: '))
       if escolha_svm == 1:
-        desenpenho_svm()
+        desempenho_svm()
       elif escolha_svm == 2:
         nova_classificacao_svm()
       elif escolha_svm == 3:
         break
       else:
         print('Opção inválida')
-  if escolha == 3:
+  elif escolha == 3:
     print('Saindo...')
     break
   else:
     print('Opção inválida')
    
-
 
