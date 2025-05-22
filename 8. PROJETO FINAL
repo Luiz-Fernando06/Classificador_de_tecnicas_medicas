@@ -9,7 +9,7 @@ from sklearn import svm
 
 # LIMPAR TELA (simulação)...................................................................
 def limpar_tela_fake():
-    print("\n" * 3)
+    print("\n" * 1)
 
 #CLASSIFICADOR..............................................................................
 df = pd.read_csv('medico_db_TotalemnteTratado.csv')
@@ -130,7 +130,7 @@ while True:
   escolha = int(input('\n>> Escolha uma opção: '))
   if escolha == 1:
     while True:
-     limpar_tela_fake
+     limpar_tela_fake()
      menu_arvore()
      escolha = int(input('\n>> Escolha uma opção: '))
      if escolha == 1:
