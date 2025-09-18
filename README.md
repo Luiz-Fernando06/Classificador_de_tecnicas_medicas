@@ -54,7 +54,10 @@ pip install pandas scikit-learn matplotlib
 2. Executar o script
 python classificador_tecnicas.py
 
-3. Menu interativo
+3. Importar o arquivo
+medico_dbTotalmentetratado.csv
+
+4. Menu interativo
 
 Escolha o modelo desejado (Árvore de Decisão ou SVM).
 
