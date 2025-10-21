@@ -1,8 +1,5 @@
 #importando, exportando e lendo as 5 primeiras linhas e bibliotecas necessarias
 import pandas as pd 
-from sklearn.model_selection import train_test_split #biblioteca para dividir os dados em treino e teste
-from sklearn.tree import DecisionTreeClassifier #Arvore de decisão
-from sklearn.metrics import accuracy_score #acuracia
 from sklearn.preprocessing import LabelEncoder #Biblioteca de codificação
 
 medico_df = pd.read_csv('/content/medico_db_atualizado.csv')
