@@ -1,29 +1,32 @@
-# Classificador de Técnicas Médicas — Árvore de Decisão & SVM
+# Classificador de Técnicas Cirúrgicas — Projeto Acadêmico
 
+### Curso: Ciência da Computação — Disciplina: Tópicos em Big Data (Python)
 ## Objetivo:
-Desenvolver um sistema interativo para prever a técnica cirúrgica utilizada (Padrão ou Videolaparoscopia) com base em informações clínicas e operacionais, utilizando algoritmos de aprendizado de máquina supervisionado.
+Desenvolver um sistema interativo para classificar a técnica cirúrgica mais adequada a partir de dados médicos, utilizando machine learning e interfaces de usuário em terminal.
 
 ## Principais etapas realizadas:
 
-- Pré-processamento de dados: Importação e divisão do dataset em variáveis preditoras (IdMedico, tip_urgencia, tip_acomod, tipo_cirurgia) e variável alvo (tecnica).
+- Preparação e leitura de dados: Carregamento do dataset tratado com informações de médicos, tipos de cirurgia, urgência e acomodação.
 
-- Modelagem:
+- Classificação com Árvores de Decisão:
 
-   - Árvore de Decisão: para visualização interpretável da lógica de classificação.
+   - Treinamento de modelo para prever técnica cirúrgica (padrão ou videolaparoscopia).
 
-   - SVM (Support Vector Machine): para comparação de desempenho e robustez preditiva.
+   - Avaliação do desempenho do modelo com métricas de acurácia.
 
-   - Avaliação: Medição da acurácia de cada modelo com dados de teste.
+   - Visualização da árvore de decisão para compreensão da lógica do modelo.
 
-   - Interface interativa (CLI): Menus organizados que permitem:
+- Classificação com SVM:
 
-       - Ver desempenho dos modelos.
+   - Treinamento de Support Vector Machine para comparação com árvore de decisão.
 
-       - Exibir a árvore de decisão graficamente.
+   - Avaliação de desempenho e predição interativa para novos dados.
 
-       - Realizar novas previsões informando os dados do paciente.
+- Interface interativa em terminal:
 
-- Classificação em tempo real: O sistema retorna se a técnica cirúrgica recomendada é “Padrão (Cirurgia Aberta)” ou “Videolaparoscopia”, com base no aprendizado do modelo.
+   - Menu principal e submenus permitem escolher o classificador, ver desempenho, fazer novas predições e visualizar a árvore.
+
+   - Sistema robusto e modular para fácil expansão.
 
 ## Resumo:
-Projeto de machine learning aplicado à área médica, combinando Decision Tree e SVM em uma interface de console funcional. Ideal para estudos sobre predição de técnicas cirúrgicas e comparação de algoritmos de classificação.
+Projeto acadêmico que integra Big Data, Machine Learning e Python, oferecendo experiência prática em classificação supervisionada, análise de desempenho de modelos e construção de interfaces interativas para tomada de decisão baseada em dados médicos.
